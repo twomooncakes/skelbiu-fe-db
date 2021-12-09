@@ -9,22 +9,22 @@
 }
 
 .btn_filled {
-    background-color: #A91E24;
+    background-color: #1e8da9;
     border: none;
     color: snow;
 }
 
 .btn_filled:hover {
-    background-color: #dc3545;
+    background-color: #dcaa35;
 }
 
 .btn_outlined {
     background-color: transparent;
-    border: 1px solid #A91E24;
-    color: #A91E24;
+    border: 1px solid #1e8da9;
+    color: #1e8da9;
 }
 
 .btn_outlined:hover {
-    border-color: #dc3545;
-    color: #dc3545;
+    border-color: #dcaa35;
+    color: #dcaa35;
 }
