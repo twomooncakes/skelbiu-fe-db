@@ -1,0 +1,3 @@
+.main_nav a:nth-child(odd) {
+    margin: 0 1rem;
+}

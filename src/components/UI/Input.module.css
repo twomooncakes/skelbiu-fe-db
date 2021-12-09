@@ -1,0 +1,17 @@
+.input-wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.input {
+    width: 100%;
+    padding: 19px;
+    color: #333;
+    border: 1px solid #bbbbbb;
+    display: block;
+}
+
+.invalid-feedback {
+    font-size: 12px;
+    position: absolute;
+    color: #dc3545;
+}

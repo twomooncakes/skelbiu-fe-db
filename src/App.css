@@ -1,0 +1,29 @@
+html, body, #root, .App {
+    height: 100%;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    color: #282c34;
+}
+
+main {
+    margin: 0 10%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+form {
+    margin: 0 30%;
+}

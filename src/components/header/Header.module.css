@@ -1,0 +1,26 @@
+header {
+    background-color: #1e8da9;
+    padding: 0.5rem 0;
+    color: whitesmoke;
+}
+
+.header_wrapper {
+    margin: 0 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 0.5rem;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+}
