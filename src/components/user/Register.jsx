@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Input from "../UI/Input";
+import { postData } from "../../utils/fetch";
 
 const formFields = [
     { type: "email", name: "email", placeholder: "Email" },
@@ -30,7 +31,12 @@ function Register() {
         }),
         onSubmit: async (values) => {
             console.log(values);
-            toast.success('registered succesfully!');
+            const authData = await postData('auth/register', values)
+            if(authData.msg === 'Registration successful!') {
+                toast.success('registered succesfully!');
+                return;
+            }
+            toast.error('registration error');
         }
     });
     return (
