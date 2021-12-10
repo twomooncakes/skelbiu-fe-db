@@ -4,18 +4,10 @@
 
 .input {
     border-radius: .25rem;
-    /* chrome and edge */
-    width: -webkit-fill-available;
+    width: 100%;
     padding: 1rem;
     color: #333;
     border: 1px solid #bbbbbb;
-}
-
-/* firefox */
-@-moz-document url-prefix() {
-    .input {
-        width: -moz-available;
-    }
 }
 
 .file-input-wrapper {
@@ -32,6 +24,7 @@
 }
 
 .file-input {
+    background-color: white;
     border-radius: .25rem;
     color: #1e8da9;
     width: 100%;

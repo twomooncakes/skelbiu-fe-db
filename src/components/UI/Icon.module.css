@@ -1,0 +1,9 @@
+.icon_wrapper {
+    transition: ease-in-out .3s;
+}
+
+.icon_wrapper:hover {
+    opacity: 0.85;
+}
+
+

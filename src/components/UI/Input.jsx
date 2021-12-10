@@ -1,9 +1,6 @@
 import css from "./Input.module.css";
 
 function Input({ formik, type, name, placeholder}) {
-    console.log(formik.values);
-    console.log(formik.values[name]);
-    console.log(formik.values[`${name}`]);
     return (
         <>
         {type === 'file' ?

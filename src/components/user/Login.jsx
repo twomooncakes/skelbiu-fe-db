@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 
@@ -16,10 +17,11 @@ function Login() {
         },
         validationSchema: Yup.object({
             email: Yup.string().email().required(),
-            password: Yup.string().required(),
+            password: Yup.string().min(6).required(),
         }),
         onSubmit: async (values) => {
             console.log(values);
+            toast.success('logged in succesfully!');
         }
     });
     return (
@@ -29,7 +31,7 @@ function Login() {
                     <Input type={field.type} key={field.name} formik={formik} name={field.name} placeholder={field.placeholder} />
                 )
             })}
-            <Button>Login</Button>
+            <Button type="submit" mainBtn={true}>Login</Button>
         </form>
     );
 }

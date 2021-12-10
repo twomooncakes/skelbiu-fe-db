@@ -1,0 +1,59 @@
+.ad-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    transition: all ease-in-out .1s;
+}
+
+.ad-card:hover {
+    transform: scale(1.02);
+}
+
+.product-image {
+    width: 100%;
+}
+
+.product-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-info p span {
+
+}
+
+.product-info i {
+    color: #1e8da9;
+}
+
+.product-footer {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-footer i {
+    font-size: 1.5rem;
+    color: tomato;
+}
+
+.product-price {
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.free-item {
+    color: rgb(79, 195, 33);
+}
+
+
