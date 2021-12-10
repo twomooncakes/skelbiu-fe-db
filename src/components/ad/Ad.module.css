@@ -18,17 +18,24 @@
 .product-title {
     font-weight: 600;
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin: 1rem 0;
 }
 
 .product-info {
-    padding: 1rem;
     display: flex;
     flex-direction: column;
+    padding: 0 1rem;
+}
+
+.product-info p {
+    margin-bottom: 0.5rem;
+    color: #797979;
 }
 
 .product-info p span {
-
+    width: 20px;
+    text-align: center;
+    margin-right: 0.4rem;
 }
 
 .product-info i {
@@ -36,6 +43,7 @@
 }
 
 .product-footer {
+    padding: 0 1rem 1rem;
     margin-top: 0.5rem;
     display: flex;
     justify-content: space-between;
