@@ -31,12 +31,12 @@ function Register() {
         }),
         onSubmit: async (values) => {
             console.log(values);
-            const authData = await postData('auth/register', values)
-            if(authData.msg === 'Registration successful!') {
-                toast.success('registered succesfully!');
+            const authData = await postData('auth/register', values);
+            if(authData.msg) {
+                toast.success(authData.msg);
                 return;
             }
-            toast.error('registration error');
+            toast.error(authData.error);
         }
     });
     return (

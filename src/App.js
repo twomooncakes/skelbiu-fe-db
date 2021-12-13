@@ -14,6 +14,9 @@ function App() {
         <Toaster />
         <Header />
         <Switch>
+            <Route exact path='/'>
+                <HomePage />
+            </Route>
             <Route path='/my-ads'>
                 <MyAdsPage />
             </Route>
@@ -22,9 +25,6 @@ function App() {
             </Route>
             <Route path='/login'>
                 <LoginPage />
-            </Route>
-            <Route exact path='/'>
-                <HomePage />
             </Route>
             <Route path='*'>
                 <main>

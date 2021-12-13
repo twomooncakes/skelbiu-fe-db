@@ -8,7 +8,7 @@ const formFields = [
     { type: "text", name: "title", placeholder: "Title" },
     { type: "text", name: "description", placeholder: "Description" },
     { type: "number", name: "price", placeholder: "Price" },
-    { type: "file", name: "image", placeholder: "Image" }
+    { type: "file", name: "mainImage", placeholder: "Image" }
 ];
 
 function CreateAd() {
@@ -17,7 +17,7 @@ function CreateAd() {
             title: "",
             description: "",
             price: 0,
-            image: ""
+            mainImage: ""
         },
         validationSchema: Yup.object({
             title: Yup.string().max(40).required(),
@@ -27,6 +27,18 @@ function CreateAd() {
         }),
         onSubmit: async (values) => {
             console.log(values);
+            // refactor later
+            const formData = new FormData();
+            formData.append('title', values.title);
+            formData.append('mainImage', values.mainImage)
+            console.log(formData.get('mainImage'));
+
+            const res = await fetch('http://localhost:5000/create', {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await res.text();
+            console.log(data);
             toast.success('add posted succesfully!');
         }
     });

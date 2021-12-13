@@ -31,6 +31,6 @@ form {
     margin: 0 30%;
 }
 
-.active {
+.main-nav .active {
     color: #293133;
 }

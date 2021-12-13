@@ -9,7 +9,7 @@ function Input({ formik, type, name, placeholder}) {
                     className={css['file-input']}
                     type="file"
                     name="image"
-                    onChange={formik.handleChange}
+                    onChange={(e) => formik.setFieldValue(name, e.target.files[0])}
                     onBlur={formik.handleBlur} 
                 />
             </div>

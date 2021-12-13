@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Input from "../UI/Input";
+import { postData } from "../../utils/fetch";
 
 const formFields = [
     { type: "email", name: "email", placeholder: "Email" },
@@ -21,7 +22,12 @@ function Login() {
         }),
         onSubmit: async (values) => {
             console.log(values);
-            toast.success('logged in succesfully!');
+            const authData = await postData('auth/login', values);
+            if(authData.msg) {
+                toast.success(authData.msg);
+                return;
+            }
+            toast.error(authData.error);
         }
     });
     return (
