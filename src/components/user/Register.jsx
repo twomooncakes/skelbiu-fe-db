@@ -36,6 +36,12 @@ function Register() {
                 toast.success(authData.msg);
                 return;
             }
+            console.log(authData.error);
+            if(Array.isArray(authData.error)) {
+                console.log(authData.error[0].errorMsg);
+                toast.error(authData.error[0].errorMsg);
+                return;
+            }
             toast.error(authData.error);
         }
     });
