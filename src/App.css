@@ -16,6 +16,7 @@ body {
 main {
     margin: 0 10%;
     padding: 1rem 0;
+    min-height: calc(100vh - 50px - 65px);
 }
 
 a {
@@ -29,6 +30,10 @@ button {
 
 form {
     margin: 0 30%;
+}
+
+.content-container {
+    min-height: calc(100vh - 34px);
 }
 
 .main-nav .active {

@@ -2,6 +2,7 @@ header {
     background-color: #1e8da9;
     padding: 0.5rem 0;
     color: whitesmoke;
+    height: 65px;
 }
 
 .header_wrapper {

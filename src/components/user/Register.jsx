@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import { postData } from "../../utils/fetch";
+import { useHistory } from "react-router-dom";
 
 const formFields = [
     { type: "email", name: "email", placeholder: "Email" },
@@ -14,6 +15,7 @@ const formFields = [
 ];
 
 function Register() {
+    const history = useHistory();
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -34,7 +36,7 @@ function Register() {
             const authData = await postData('auth/register', values);
             if(authData.msg) {
                 toast.success(authData.msg);
-                return;
+                history.push('/login');
             }
             console.log(authData.error);
             if(Array.isArray(authData.error)) {
