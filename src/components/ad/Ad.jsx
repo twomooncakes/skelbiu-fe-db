@@ -1,24 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "../UI/Icon";
 import css from "./Ad.module.css";
 import TimeAgo from 'timeago-react';
+import { backURL } from "../../utils/fetch";
 
-function Ad({ad, price}) {
+function Ad({ad, email}) {
     const [favorited, setFavorited] = useState(false);
-    let itemPrice = price || 30;
-    const isFree = parseInt(itemPrice) === 0;
+
+    useEffect(() => {
+        if(ad.likedBy) {
+            setFavorited(ad.likedBy.split(',').includes(email));
+        }
+        return () => {
+            setFavorited(false);
+        }
+    }, [])
+    
+    const isFree = parseInt(ad.price) === 0;
+    
     return (
         <div className={css["ad-card"]}>
-            <img className={css["product-image"]} src="https://media.karousell.com/media/photos/products/2018/12/05/ps3_slim_used_1543973790_3c16f9d1.jpg" alt="" />
+            <div className={css["product-image-wrapper"]}>
+                <img className={css["product-image"]} src={`${backURL + ad.image}`} alt="" />
+            </div>
+            
             <div className={css["product-info"]}>
-                <h2 className={css["product-title"]}>Used PS3</h2>
-                <p><Icon icon="fa-clock-o" /><TimeAgo datetime={'2021-12-10 13:00:00'}/></p>
+                <h2 className={css["product-title"]}>{ad.title}</h2>
+                <p><Icon icon="fa-clock-o" /><TimeAgo datetime={ad.timestamp}/></p>
+                {/* add users location, unknown/private if null  */}
                 <p><Icon icon="fa-map-marker" />Kaunas</p>
+                {/* add category later */}
                 <p><Icon icon="fa-tag" />Other</p>
-                <p><Icon icon="fa-eye" />41 views</p>
+                <p><Icon icon="fa-eye" />{ad.views} views</p>
             </div>
             <div className={css["product-footer"]}>
-                <p className={`${css["product-price"]} ${isFree ? css["free-item"] : ''}`}>{isFree ? 'Free' : itemPrice + ' €'}</p>
+                <p className={`${css["product-price"]} ${isFree ? css["free-item"] : ''}`}>{isFree ? 'Free' : ad.price + ' €'}</p>
                 <Icon icon={favorited ? "fa-heart" : "fa-heart-o"} onClick={() => setFavorited(!favorited)}/>
             </div>
         </div>

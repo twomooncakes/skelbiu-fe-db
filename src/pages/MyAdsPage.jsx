@@ -1,10 +1,12 @@
-import CreateAd from "../components/ad/CreateAd";
+import AdList from "../components/ad/AdList";
+import { useAuthCtx } from '../store/AuthContext';
 
 function MyAdsPage() {
+    const { token } = useAuthCtx();
     return (
         <main>
             <h1>My Ads</h1>
-            <CreateAd />
+            <AdList byToken={true} endpoint='listings/user-listings'/>
         </main>
     );
 }

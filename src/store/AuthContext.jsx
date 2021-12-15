@@ -14,14 +14,14 @@ function AuthProvider({ children }) {
     const history = useHistory();
 
     const [token, setToken] = useState(localStorage.getItem('userToken'));
-    const [username, setUsername] = useState(localStorage.getItem('userEmail'));
+    const [email, setEmail] = useState(localStorage.getItem('userEmail'));
     const isLoggedIn = !!token;
 
     const login = (tokenArg, emailArg, msg) => {
         localStorage.setItem('userToken', tokenArg);
         localStorage.setItem('userEmail', emailArg);
         setToken(tokenArg);
-        setUsername(emailArg);
+        setEmail(emailArg);
         toast.success(msg);
         history.push('/');
     };
@@ -30,14 +30,14 @@ function AuthProvider({ children }) {
         localStorage.removeItem('userToken');
         localStorage.removeItem('userEmail');
         setToken(null);
-        setUsername(null);
+        setEmail(null);
     };
 
 
     const finalContextValues = {
         token: token,
         isLoggedIn: isLoggedIn,
-        username,
+        email,
         login: login,
         logout: logout, 
     };

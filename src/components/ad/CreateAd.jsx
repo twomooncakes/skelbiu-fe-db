@@ -3,15 +3,19 @@ import * as Yup from "yup";
 import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Input from "../UI/Input";
+import { useAuthCtx } from '../../store/AuthContext';
+import { postMultiPartData } from "../../utils/fetch";
 
 const formFields = [
     { type: "text", name: "title", placeholder: "Title" },
     { type: "text", name: "description", placeholder: "Description" },
     { type: "number", name: "price", placeholder: "Price" },
-    { type: "file", name: "mainImage", placeholder: "Image" }
+    { type: "file", name: "mainImage" }
 ];
 
 function CreateAd() {
+    const { token } = useAuthCtx();
+
     const formik = useFormik({
         initialValues: {
             title: "",
@@ -23,22 +27,20 @@ function CreateAd() {
             title: Yup.string().max(40).required(),
             description: Yup.string().min(3),
             price: Yup.number().min(0).required(),
-            // add image validation 
+            mainImage: Yup.string()
         }),
         onSubmit: async (values) => {
             console.log(values);
             // refactor later
             const formData = new FormData();
             formData.append('title', values.title);
-            formData.append('mainImage', values.mainImage)
+            formData.append('description', values.description);
+            formData.append('price', values.price);
+            formData.append('mainImage', values.mainImage);
+            console.log(Object.fromEntries(formData));
             console.log(formData.get('mainImage'));
 
-            const res = await fetch('http://localhost:5000/create', {
-                method: 'POST',
-                body: formData,
-            });
-            const data = await res.text();
-            console.log(data);
+            const listingData = await postMultiPartData('listings/new', formData, token);
             toast.success('add posted succesfully!');
         }
     });

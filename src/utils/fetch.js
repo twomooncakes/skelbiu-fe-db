@@ -1,4 +1,4 @@
-const backURL = process.env.REACT_APP_BACK_URL;
+export const backURL = process.env.REACT_APP_BACK_URL;
 
 // GET fetch
 export async function getData(endpoint, token = false) {
@@ -14,16 +14,29 @@ export async function getData(endpoint, token = false) {
     return data;
 }
 
-// POST fetch
-export async function postData(endpoint, body) {
-    let options = {
+export async function postData(endpoint, body, token) {
+    const res = await fetch(backURL + `${endpoint}/`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(body)
-    }
-    const res = await fetch(backURL + `${endpoint}/`, options);
+    });
+    const data = await res.json();
+    console.log(data);
+    return data;
+}
+
+// POST fetch sans content-type header
+export async function postMultiPartData(endpoint, formData, token) {
+    const res = await fetch(backURL + `${endpoint}/`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        body: formData
+    });
     const data = await res.json();
     console.log(data);
     return data;

@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import { postData } from "../../utils/fetch";
-import { useHistory } from "react-router-dom";
+import { useAuthCtx } from '../../store/AuthContext';
 
 const formFields = [
     { type: "email", name: "email", placeholder: "Email" },
@@ -12,7 +12,7 @@ const formFields = [
 ];
 
 function Login() {
-    const history = useHistory();
+    const { login } = useAuthCtx();
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -26,10 +26,8 @@ function Login() {
             console.log(values);
             const authData = await postData('auth/login', values);
             if(authData.msg) {
-                toast.success(authData.msg);
-                localStorage.setItem('userToken', authData.data.token);
-                localStorage.setItem('userEmail', authData.data.email);
-                history.push('/');
+                login(authData.data.token, authData.data.email, authData.msg)
+                return;
             }
             if(Array.isArray(authData.error)) {
                 console.log(authData.error[0].errorMsg);

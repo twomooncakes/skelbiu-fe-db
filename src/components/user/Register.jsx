@@ -37,6 +37,7 @@ function Register() {
             if(authData.msg) {
                 toast.success(authData.msg);
                 history.push('/login');
+                return;
             }
             console.log(authData.error);
             if(Array.isArray(authData.error)) {
