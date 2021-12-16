@@ -24,7 +24,7 @@ function CreateAd() {
             mainImage: ""
         },
         validationSchema: Yup.object({
-            title: Yup.string().max(40).required(),
+            title: Yup.string().max(25).required(),
             description: Yup.string().min(3),
             price: Yup.number().min(0).required(),
             mainImage: Yup.string()
@@ -37,11 +37,21 @@ function CreateAd() {
             formData.append('description', values.description);
             formData.append('price', values.price);
             formData.append('mainImage', values.mainImage);
+
             console.log(Object.fromEntries(formData));
-            console.log(formData.get('mainImage'));
 
             const listingData = await postMultiPartData('listings/new', formData, token);
-            toast.success('add posted succesfully!');
+            if(listingData.msg) {
+                toast.success('add posted succesfully!');
+                return;
+            }
+            if(Array.isArray(listingData.error)) {
+                console.log(listingData.error[0].errorMsg);
+                toast.error(listingData.error[0].errorMsg);
+                return;
+            }
+            toast.error(listingData.error);
+            
         }
     });
 

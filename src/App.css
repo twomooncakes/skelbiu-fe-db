@@ -32,10 +32,12 @@ form {
     margin: 0 30%;
 }
 
-.content-container {
-    min-height: calc(100vh - 34px);
-}
-
 .main-nav .active {
     color: #293133;
+}
+
+.main-msg {
+    font-size: 1.2rem;
+    color: #585858;
+    margin: 1rem 0;
 }

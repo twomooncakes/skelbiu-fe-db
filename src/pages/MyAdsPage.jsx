@@ -6,7 +6,7 @@ function MyAdsPage() {
     return (
         <main>
             <h1>My Ads</h1>
-            <AdList byToken={true} endpoint='listings/user-listings'/>
+            <AdList byToken={token} endpoint='listings/user-listings'/>
         </main>
     );
 }
