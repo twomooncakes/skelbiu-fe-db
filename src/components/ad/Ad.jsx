@@ -3,16 +3,25 @@ import Icon from "../UI/Icon";
 import css from "./Ad.module.css";
 import TimeAgo from 'timeago-react';
 import { backURL, postData } from "../../utils/fetch";
+import toast from 'react-hot-toast';
+import { useAuthCtx } from "../../store/AuthContext";
 
 function Ad({ad, email, token}) {
     const [favorited, setFavorited] = useState(false);
+    const { isLoggedIn } = useAuthCtx();
 
     const handleFavoriting = async () => {
-        // currently only able to favorite, no reseting yet
-        if(!favorited) {
-            const favoriteData = await postData(`listings/favorite/${ad.id}`, {}, token);
-            setFavorited(true);
+        if(!isLoggedIn) {
+            toast.error("Sign up/in to favorite listings!");
+            return;
         }
+        let fetchEndpoint = favorited ? `listings/unfavorite/${ad.id}` : `listings/favorite/${ad.id}`
+        // currently only able to favorite, no reseting yet
+        const favoriteData = await postData(fetchEndpoint, {}, token);
+        console.log(favoriteData);
+        if(favoriteData.msg === 'listing favorited') {
+            setFavorited(true);
+        } else setFavorited(false);
     }
 
     useEffect(() => {
