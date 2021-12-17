@@ -1,5 +1,9 @@
+.user-info-form {
+    flex: 2;
+}
+
 .user-info-list {
-    margin: 0.5rem 0;
+    
 }
 
 .user-info-list li {

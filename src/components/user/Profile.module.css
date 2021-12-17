@@ -3,24 +3,26 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     border-radius: .25rem;
     margin-top: 1rem;
-    padding: 1rem 1.5rem;
+    padding: 1.2rem 1.5rem;
 }
 
 .profile-wrapper form {
     margin: 1rem 0;
 }
 
-
-.container {
+.control-panel {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1.5rem;
 }
 
 .control-panel > * {
     margin: 0 0.2rem;
 }
 
-.profile-form {
-    margin: 1rem 0;
+.forms {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
 }
 

@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import CreateListingPage from "./pages/CreateListingPage";
 import MyAdsPage from "./pages/MyAdsPage";
 import MyAccountPage from "./pages/MyAccount";
+import EditProfileProvider from "./store/EditProfileContext";
 
 function App() {
   const { isLoggedIn } = useAuthCtx();
@@ -22,17 +23,24 @@ function App() {
           <HomePage />
         </Route>
 
+        {isLoggedIn && (
+          <Route path="/account">
+            <EditProfileProvider>
+              <MyAccountPage />
+            </EditProfileProvider>
+          </Route>
+        )}
+        {isLoggedIn && (
+          <Route path="/my-ads">
+            <MyAdsPage />
+          </Route>
+        )}
+        {isLoggedIn && (
+          <Route path="/create-listing">
+            <CreateListingPage />
+          </Route>
+        )}
 
-        {isLoggedIn && <Route path="/account">
-          <MyAccountPage />
-        </Route>}
-        {isLoggedIn && <Route path="/my-ads">
-          <MyAdsPage />
-        </Route>}
-        {isLoggedIn && <Route path="/create-listing">
-          <CreateListingPage />
-        </Route>}
-        
         <Route path="/register">
           <RegisterPage />
         </Route>

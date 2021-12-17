@@ -31,7 +31,7 @@ function UserInfo({userInfo, editInfoToggle, setEditInfoToggle}) {
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <form className={css["user-info-form"]} onSubmit={formik.handleSubmit}>
             <h3>Your info:</h3>
             {editInfoToggle ? 
                 <>

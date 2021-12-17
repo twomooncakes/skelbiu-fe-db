@@ -8,18 +8,17 @@ import css from "./Profile.module.css";
 import { useHistory } from "react-router-dom";
 import UserInfo from "./UserInfo";
 import Credentials from "./Credentials";
+import { useEditProfileCtx } from "../../store/EditProfileContext";
 
 function Profile() {
     const history = useHistory();
+    const { editInfoToggle, setEditInfoToggle, handleEmailToggle, handlePasswordToggle, editEmailToggle, editPasswordToggle } = useEditProfileCtx();
     const [userInfo, setUserInfo] = useState({});
-
-    const [editCredToggle, setEditCredToggle] = useState(false);
-    const [editInfoToggle, setEditInfoToggle] = useState(false);
 
     const { token, logout } = useAuthCtx();
 
     const getUserData = async () => {
-        const userData = await getData('user/', token);
+        const userData = await getData('user', token);
         if(userData.error === "Bad token") {
             toast.error("Session has expired. Please login again");
             logout();
@@ -36,21 +35,40 @@ function Profile() {
         }
     }, [])
 
-
     return (
         <section className={css["profile-wrapper"]}>
-            <div className={css.container}>
-                <Credentials userInfo={userInfo} editCredToggle={editCredToggle} setEditCredToggle={setEditCredToggle}/>
-                
-                <div className={css["control-panel"]}>
-                    <Button clickFunc={() => setEditCredToggle(!editCredToggle)}>Change password</Button>
-                    <Button clickFunc={() => setEditInfoToggle(!editInfoToggle)}><Icon icon='fa-pencil' /> Edit Info</Button>
+            <div className={css["control-panel"]}>
+                <div>
+                    <Button mainBtn={editEmailToggle} clickFunc={handleEmailToggle}>Change Email</Button>
+                    <Button mainBtn={editPasswordToggle} clickFunc={handlePasswordToggle}>Change Password</Button>
                 </div>
+                
+                <Button clickFunc={() => setEditInfoToggle(!editInfoToggle)}><Icon icon='fa-pencil' /> Edit Info</Button>
             </div>
-            
-            <UserInfo userInfo={userInfo} editInfoToggle={editInfoToggle} setEditInfoToggle={setEditInfoToggle}/>
+
+            <div className={css.forms}>
+                <Credentials userInfo={userInfo} />
+                <UserInfo userInfo={userInfo} />
+            </div>
         </section>
     );
+
 }
 
 export default Profile;
+
+
+// return (
+//     <section className={css["profile-wrapper"]}>
+        
+//         <div className={css.container}>
+//             <Credentials userInfo={userInfo} editCredToggle={editCredToggle} setEditCredToggle={setEditCredToggle}/>
+            
+//             <div className={css["control-panel"]}>
+//                 <Button clickFunc={() => setEditCredToggle(!editCredToggle)}>Change password</Button>
+//                 <Button clickFunc={() => setEditInfoToggle(!editInfoToggle)}><Icon icon='fa-pencil' /> Edit Info</Button>
+//             </div>
+//         </div>
+//         <UserInfo userInfo={userInfo} editInfoToggle={editInfoToggle} setEditInfoToggle={setEditInfoToggle}/>
+//     </section>
+// );
