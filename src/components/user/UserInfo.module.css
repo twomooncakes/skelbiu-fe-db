@@ -1,0 +1,15 @@
+.user-info-list {
+    margin: 0.5rem 0;
+}
+
+.user-info-list li {
+    margin-bottom: 0.7rem;
+}
+
+.user-info-list li span {
+    font-weight: 700;
+}
+
+label {
+    font-weight: 700;
+}

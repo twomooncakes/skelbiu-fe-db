@@ -16,12 +16,15 @@ function Ad({ad, email, token}) {
             return;
         }
         let fetchEndpoint = favorited ? `listings/unfavorite/${ad.id}` : `listings/favorite/${ad.id}`
-        // currently only able to favorite, no reseting yet
         const favoriteData = await postData(fetchEndpoint, {}, token);
         console.log(favoriteData);
         if(favoriteData.msg === 'listing favorited') {
             setFavorited(true);
         } else setFavorited(false);
+    }
+
+    const handleEdit = async () => {
+        console.log('edit');
     }
 
     useEffect(() => {
@@ -52,7 +55,7 @@ function Ad({ad, email, token}) {
             </div>
             <div className={css["product-footer"]}>
                 <p className={`${css["product-price"]} ${isFree ? css["free-item"] : ''}`}>{isFree ? 'Free' : ad.price + ' €'}</p>
-                {ad.seller !== email && <Icon icon={favorited ? "fa-heart" : "fa-heart-o"} onClick={handleFavoriting}/>}
+                {ad.seller === email ? <Icon icon='fa-pencil' onClick={handleEdit}/> : <Icon icon={favorited ? "fa-heart" : "fa-heart-o"} onClick={handleFavoriting}/>}
             </div>
         </div>
     );

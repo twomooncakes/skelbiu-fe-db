@@ -31,6 +31,11 @@ const authedNav = [
     },
     {
         id: 2,
+        name: 'Account',
+        to: '/account'
+    },
+    {
+        id: 3,
         name: 'My Ads',
         to: '/my-ads'
     }

@@ -1,0 +1,26 @@
+.profile-wrapper {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    border-radius: .25rem;
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+}
+
+.profile-wrapper form {
+    margin: 1rem 0;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.control-panel > * {
+    margin: 0 0.2rem;
+}
+
+.profile-form {
+    margin: 1rem 0;
+}
+
