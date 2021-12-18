@@ -1,0 +1,39 @@
+.seller-info-wrapper {
+    flex: 3;
+    height: fit-content;
+}
+
+.heading {
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.username {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.seller-info-list {
+    margin-top: 1rem;
+}
+
+.seller-info-list li {
+    padding: 1.1rem 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #bbbbbb;
+}
+
+.seller-info-list li:last-child {
+    border: none;
+}
+
+.seller-info-list li span {
+    font-weight: 600;
+}
+
+.actions {
+    margin: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+}

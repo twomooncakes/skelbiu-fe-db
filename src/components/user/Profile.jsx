@@ -36,7 +36,7 @@ function Profile() {
     }, [])
 
     return (
-        <section className={css["profile-wrapper"]}>
+        <section className={`${css["profile-wrapper"]} card`}>
             <div className={css["control-panel"]}>
                 <div className={css["cred-control-panel"]}>
                     <Button mainBtn={editEmailToggle} clickFunc={handleEmailToggle}>Change Email</Button>

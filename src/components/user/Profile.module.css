@@ -1,9 +1,5 @@
 .profile-wrapper {
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    border-radius: .25rem;
     margin-top: 1rem;
-    padding: 2rem 2.5rem;
     /* review later */
     height: 450px;
 }

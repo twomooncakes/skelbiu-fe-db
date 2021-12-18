@@ -11,6 +11,8 @@ import CreateListingPage from "./pages/CreateListingPage";
 import MyAdsPage from "./pages/MyAdsPage";
 import MyAccountPage from "./pages/MyAccount";
 import EditProfileProvider from "./store/EditProfileContext";
+import SingleListingPage from "./pages/SingleListingPage";
+import UserListingsPage from "./pages/UserListingsPage";
 
 function App() {
   const { isLoggedIn } = useAuthCtx();
@@ -21,6 +23,15 @@ function App() {
       <Switch>
         <Route exact path="/">
           <HomePage />
+        </Route>
+
+        
+        <Route path="/listings/:listingId">
+          <SingleListingPage />
+        </Route>
+
+        <Route path="/user/:userId">
+          <UserListingsPage />
         </Route>
 
         {isLoggedIn && (

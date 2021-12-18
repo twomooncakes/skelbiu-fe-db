@@ -57,7 +57,7 @@ function MainNav() {
             </label>
             <nav className={css.main_nav + ' main-nav'}>
                 {navArr.map((link) => <NavLink key={link.id} exact to={link.to}>{link.name}</NavLink>)}
-                {isLoggedIn && <NavLink to='/login' onClick={logout}>Logout</NavLink>}
+                {isLoggedIn && <NavLink to='/' onClick={logout}>Logout</NavLink>}
                 {isLoggedIn && <NavLink to='/create-listing'>
                     <Button mainBtn={true} ><Icon icon='fa-plus'/> New Ad</Button>
                 </NavLink>}

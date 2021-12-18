@@ -2,10 +2,6 @@
     flex: 2;
 }
 
-.user-info-list {
-    
-}
-
 .user-info-list li {
     padding: 1.1rem 0;
     display: flex;
@@ -18,12 +14,12 @@
 }
 
 .user-info-list li span {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .user-info-wrapper label {
     text-transform: capitalize;
-    font-weight: 700;
+    font-weight: 600;
     display: block;
     margin-bottom: 0.3rem;
 }
