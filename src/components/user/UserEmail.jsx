@@ -49,9 +49,9 @@ function UserEmail({userInfo}) {
                     <Button type="submit" mainBtn={true}>Confirm changes</Button>
                 </form>
             :
-                <>
+                <div>
                     <h2>{userInfo.email}</h2>
-                </>
+                </div>
             } 
         </>
     );

@@ -38,7 +38,7 @@ function Profile() {
     return (
         <section className={css["profile-wrapper"]}>
             <div className={css["control-panel"]}>
-                <div>
+                <div className={css["cred-control-panel"]}>
                     <Button mainBtn={editEmailToggle} clickFunc={handleEmailToggle}>Change Email</Button>
                     <Button mainBtn={editPasswordToggle} clickFunc={handlePasswordToggle}>Change Password</Button>
                 </div>
@@ -56,19 +56,3 @@ function Profile() {
 }
 
 export default Profile;
-
-
-// return (
-//     <section className={css["profile-wrapper"]}>
-        
-//         <div className={css.container}>
-//             <Credentials userInfo={userInfo} editCredToggle={editCredToggle} setEditCredToggle={setEditCredToggle}/>
-            
-//             <div className={css["control-panel"]}>
-//                 <Button clickFunc={() => setEditCredToggle(!editCredToggle)}>Change password</Button>
-//                 <Button clickFunc={() => setEditInfoToggle(!editInfoToggle)}><Icon icon='fa-pencil' /> Edit Info</Button>
-//             </div>
-//         </div>
-//         <UserInfo userInfo={userInfo} editInfoToggle={editInfoToggle} setEditInfoToggle={setEditInfoToggle}/>
-//     </section>
-// );

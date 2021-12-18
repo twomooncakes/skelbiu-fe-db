@@ -5,14 +5,16 @@ import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Icon from "../UI/Icon";
 import Input from "../UI/Input";
+import TimeAgo from 'timeago-react';
+import { useEditProfileCtx } from '../../store/EditProfileContext';
 
 const formFields = [
     { type: "text", name: "city", placeholder: "City" },
     { type: "text", name: "phone", placeholder: "Phone" }
 ];
 
-function UserInfo({userInfo, editInfoToggle, setEditInfoToggle}) {
-    
+function UserInfo({userInfo}) {
+    const { editInfoToggle, setEditInfoToggle } = useEditProfileCtx();
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -31,10 +33,10 @@ function UserInfo({userInfo, editInfoToggle, setEditInfoToggle}) {
     });
 
     return (
-        <form className={css["user-info-form"]} onSubmit={formik.handleSubmit}>
-            <h3>Your info:</h3>
+        <section className={css["user-info-wrapper"]}>
+            {/* <h2>Your info:</h2> */}
             {editInfoToggle ? 
-                <>
+                <form onSubmit={formik.handleSubmit}>
                     {formFields.map((field) => {
                         return (
                             <div key={field.name}>
@@ -44,17 +46,18 @@ function UserInfo({userInfo, editInfoToggle, setEditInfoToggle}) {
                         )
                     })}
                     <Button type="submit" mainBtn={true}>Confirm changes</Button>
-                </> 
+                </form> 
             :
                 <ul className={css["user-info-list"]}>
                     <li><span>City:</span> {userInfo.city ? userInfo.city : 'Unspecified'}</li>
                     <li><span>Phone:</span> {userInfo.phone ? userInfo.phone :'Unspecified'}</li>
-                    <li><span>Date registered:</span></li>
-                    <li><span>Listings posted: </span> 3</li>
-                    <li><span>Listings favorited: </span>5</li>
+
+                    <li><span>Member since:</span> <TimeAgo datetime={userInfo.timestamp}/></li>
+                    <li><span>Listings posted: </span> {userInfo.numOfAds}</li>
+                    <li><span>Listings favorited: </span> {userInfo.numOfFaves}</li>
                 </ul>
             }
-        </form>
+        </section>
     );
 }
 

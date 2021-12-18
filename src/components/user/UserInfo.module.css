@@ -1,4 +1,4 @@
-.user-info-form {
+.user-info-wrapper {
     flex: 2;
 }
 
@@ -7,13 +7,27 @@
 }
 
 .user-info-list li {
-    margin-bottom: 0.7rem;
+    padding: 1.1rem 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #bbbbbb;
+}
+
+.user-info-list li:last-child {
+    border: none;
 }
 
 .user-info-list li span {
     font-weight: 700;
 }
 
-label {
+.user-info-wrapper label {
+    text-transform: capitalize;
     font-weight: 700;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.separator {
+    border-bottom: 1px solid #e5e5e5;
 }
