@@ -6,6 +6,8 @@ import Input from "../UI/Input";
 // CHANGE LATER
 import css from './Credentials.module.css';
 import { useEditProfileCtx } from "../../store/EditProfileContext";
+import { postData } from "../../utils/fetch";
+import { useAuthCtx } from "../../store/AuthContext";
 
 const credFormFields = [
     { type: "email", name: "email", placeholder: "Email", label: "Email" },
@@ -13,6 +15,7 @@ const credFormFields = [
 ];
 
 function UserEmail({userInfo}) {
+    const { token } = useAuthCtx();
     const { editEmailToggle, setEditEmailToggle } = useEditProfileCtx();
     const formik = useFormik({
         enableReinitialize: true,
@@ -31,7 +34,11 @@ function UserEmail({userInfo}) {
         onSubmit: async (values) => {
             console.log(values);
             setEditEmailToggle(false);
-            // const editData = await postData('user/edit', values, token);
+            const editData = await postData('user/edit/email', values, token);
+            if(editData.error) {
+                return toast.error(editData.error);
+            }
+            toast.success(editData.msg); 
         }
     });
     return (

@@ -7,6 +7,8 @@ import Icon from "../UI/Icon";
 import Input from "../UI/Input";
 import TimeAgo from 'timeago-react';
 import { useEditProfileCtx } from '../../store/EditProfileContext';
+import { postData } from '../../utils/fetch';
+import { useAuthCtx } from '../../store/AuthContext';
 
 const formFields = [
     { type: "text", name: "city", placeholder: "City" },
@@ -14,6 +16,7 @@ const formFields = [
 ];
 
 function UserInfo({userInfo}) {
+    const { token } = useAuthCtx();
     const { editInfoToggle, setEditInfoToggle } = useEditProfileCtx();
     const formik = useFormik({
         enableReinitialize: true,
@@ -28,7 +31,7 @@ function UserInfo({userInfo}) {
         onSubmit: async (values) => {
             console.log(values);
             setEditInfoToggle(false);
-            // const editData = await postData('user/edit', values, token);
+            const editData = await postData('user/edit/info', values, token);
         }
     });
 

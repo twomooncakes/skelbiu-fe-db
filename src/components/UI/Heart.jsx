@@ -5,8 +5,9 @@ import toast from 'react-hot-toast';
 import Icon from "./Icon";
 
 function Heart({listingId, likedBy}) {
-    const [favorited, setFavorited] = useState(false);
     const { isLoggedIn, token, email } = useAuthCtx();
+    const [favorited, setFavorited] = useState(false);
+    
 
     const handleFavoriting = async () => {
         if(!isLoggedIn) {
@@ -23,7 +24,7 @@ function Heart({listingId, likedBy}) {
 
     useEffect(() => {
         if(likedBy) {
-            setFavorited(likedBy.split(',').includes(email));
+            setFavorited(likedBy.split(",").includes(email));
         }
         return () => {
             setFavorited(false);

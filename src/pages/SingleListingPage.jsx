@@ -16,7 +16,7 @@ function SingleListingPage() {
             tokenArg = token;
         }
         const listingsData = await getData(`listings/${listingId}`, tokenArg);
-        console.log(listingsData);
+        console.log(listingsData.data[0]);
         setListingInfo(listingsData.data[0]);
     };
     
@@ -28,13 +28,17 @@ function SingleListingPage() {
     }, []);
 
     return (
-        <main>
-            <h1>{listingInfo.title}</h1>
-            <div className={css["single-listing-wrapper"]}>
-                <SingleAd listingInfo={listingInfo} />
-                <SellerInfo sellerInfo={listingInfo} />
-            </div>
-        </main>
+        <>
+            {Object.entries(listingInfo).length === 0 ? <p>fdgd</p> : 
+                <main>
+                    <h1>{listingInfo.title}</h1>
+                    <div className={css["single-listing-wrapper"]}>
+                        <SingleAd listingInfo={listingInfo} />
+                        <SellerInfo sellerInfo={listingInfo} />
+                    </div>
+                </main>
+            }
+        </>
     );
 }
 
