@@ -1,4 +1,3 @@
-import Icon from '../UI/Icon';
 import css from './Header.module.css';
 import MainNav from './Nav';
 

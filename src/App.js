@@ -12,7 +12,6 @@ import MyAdsPage from "./pages/MyAdsPage";
 import MyAccountPage from "./pages/MyAccount";
 import EditProfileProvider from "./store/EditProfileContext";
 import SingleListingPage from "./pages/SingleListingPage";
-import UserListingsPage from "./pages/UserListingsPage";
 import EditListingPage from "./pages/EditListingPage";
 
 function App() {
@@ -29,10 +28,6 @@ function App() {
         
         <Route path="/listings/:listingId">
           <SingleListingPage />
-        </Route>
-
-        <Route path="/user/:userId">
-          <UserListingsPage />
         </Route>
 
         {isLoggedIn && (

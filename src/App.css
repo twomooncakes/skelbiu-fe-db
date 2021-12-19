@@ -57,7 +57,8 @@ form {
         margin-bottom: 2rem;
     }
     .page-heading {
-        margin-bottom: 0;
+        align-items: center;
+        flex-direction: column;
     }
 }
 
@@ -81,4 +82,9 @@ form {
 
 .bg-danger {
     background-color: #dc3545;
+}
+
+.danger-btn button {
+    border-color: #dc3545;
+    color: #dc3545;
 }

@@ -3,3 +3,10 @@
     margin-top: 1rem;
     gap: 2rem;
 }
+
+@media (max-width: 800px) {
+    .single-listing-wrapper {
+        flex-direction: column;
+    }
+}
+

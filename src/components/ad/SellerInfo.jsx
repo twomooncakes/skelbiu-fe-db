@@ -1,10 +1,9 @@
 import css from "./SellerInfo.module.css";
 import TimeAgo from 'timeago-react';
 import Button from "../UI/Button";
-import { Link } from "react-router-dom";
 
 function SellerInfo({sellerInfo}) {
-    const { id, email, city, phone, title } = sellerInfo;
+    const { email, city, phone, title } = sellerInfo;
     console.log(title);
     return (
         <section className={`${css["seller-info-wrapper"]} card`}>
@@ -25,9 +24,6 @@ function SellerInfo({sellerInfo}) {
                         e.preventDefault(); 
                     }}
                 >Contact Via Email</Button>
-                <Link to={`/user/${id}`}>
-                    <Button>Seller's Other Listings</Button>
-                </Link>
                 
             </div>
             

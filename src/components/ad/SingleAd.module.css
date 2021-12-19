@@ -69,3 +69,9 @@
     padding-top: 2rem;
     border-top: 1px solid #bbbbbb;
 }
+
+@media (max-width: 800px) {
+    .listing-price {
+        font-size: 1.4rem;
+    }
+}

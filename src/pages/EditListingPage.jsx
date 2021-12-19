@@ -35,7 +35,10 @@ function EditListingPage() {
         <main>
             <div className="page-heading">
                 <h1 className="page-title">Edit</h1>
-                <Button clickFunc={handleDelete}>Delete Listing</Button>
+                <div className="danger-btn">
+                    <Button clickFunc={handleDelete}>Delete Listing</Button>
+                </div>
+                
             </div>
             <EditAd listingInfo={listingInfo} listingId={listingId}/>
         </main>}

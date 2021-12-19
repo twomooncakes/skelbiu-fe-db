@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthContext";
 import { getData } from "../../utils/fetch";
 import toast from "react-hot-toast";

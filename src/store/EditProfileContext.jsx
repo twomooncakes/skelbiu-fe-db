@@ -1,6 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { toast } from 'react-hot-toast';
-import { useHistory } from 'react-router';
 
 const EditProfileContext = React.createContext({});
 

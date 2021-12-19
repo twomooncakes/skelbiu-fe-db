@@ -3,7 +3,6 @@ import * as Yup from "yup";
 import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-// CHANGE LATER
 import css from './UserEmail.module.css';
 import { useEditProfileCtx } from "../../store/EditProfileContext";
 import { postData } from "../../utils/fetch";
@@ -21,7 +20,6 @@ function UserEmail({userInfo}) {
     const { editEmailToggle, setEditEmailToggle } = useEditProfileCtx();
 
     const handleDeleteUser = async () => {
-        console.log('delete user');
         const deleteData = await postData('user/delete', {}, token);
         if(deleteData.msg) {
             logout();

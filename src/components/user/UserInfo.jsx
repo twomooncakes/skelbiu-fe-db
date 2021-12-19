@@ -3,12 +3,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from 'react-hot-toast';
 import Button from "../UI/Button";
-import Icon from "../UI/Icon";
 import Input from "../UI/Input";
 import TimeAgo from 'timeago-react';
 import { useEditProfileCtx } from '../../store/EditProfileContext';
 import { postData } from '../../utils/fetch';
 import { useAuthCtx } from '../../store/AuthContext';
+import { useEffect, useState } from "react";
 
 const formFields = [
     { type: "text", name: "city", placeholder: "City" },
@@ -16,29 +16,41 @@ const formFields = [
 ];
 
 function UserInfo({userInfo}) {
+    const [response, setResponse] = useState([]);
     const { token } = useAuthCtx();
     const { editInfoToggle, setEditInfoToggle } = useEditProfileCtx();
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            city: userInfo.city,
-            phone: userInfo.phone,
+            city: userInfo.city || "",
+            phone: userInfo.phone || "",
         },
         validationSchema: Yup.object({
-            city: Yup.string().nullable(),
+            city: Yup.string().matches(/[A-zÀ-ž\s^\D*]/, 'letters and spaces only').nullable(),
             phone: Yup.string().max(12).matches(/^(\+370|8)([0-9]{8})$/, 'Invalid phone number').nullable(),
         }),
         onSubmit: async (values) => {
             console.log(values);
-            setEditInfoToggle(false);
             const editData = await postData('user/edit/info', values, token);
             if(editData.msg) {
                 toast.success(editData.msg);
+                setEditInfoToggle(false);
+                return;
+            }
+            if(Array.isArray(editData.error)) {
+                setResponse(editData.error);
                 return;
             }
             toast.error(editData.error);
         }
     });
+
+    const formikErrors = formik.setErrors;
+
+    useEffect(() => {
+        const errorObj = responseToErrors(response);
+        formikErrors(errorObj);
+    }, [response, formikErrors]);
 
     return (
         <section className={css["user-info-wrapper"]}>
@@ -70,3 +82,11 @@ function UserInfo({userInfo}) {
 }
 
 export default UserInfo;
+
+function responseToErrors(response) {
+    const arrayStructure = response.map((errObj) => ({
+        [errObj.field]: errObj.errorMsg,
+    }));
+  
+    return Object.assign({}, ...arrayStructure);
+}

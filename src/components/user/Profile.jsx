@@ -37,6 +37,7 @@ function Profile() {
         }
     }, [])
 
+
     return (
         <section className={`${css["profile-wrapper"]} card`}>
             <div className={css["control-panel"]}>

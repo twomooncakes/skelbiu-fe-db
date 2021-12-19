@@ -33,8 +33,6 @@ function EditAd({listingInfo, listingId}) {
             mainImage: Yup.string(),
         }),
         onSubmit: async (values) => {
-            console.log(values);
-            // refactor later
             const formData = new FormData();
             formData.append('title', values.title);
             formData.append('description', values.description);
@@ -50,7 +48,6 @@ function EditAd({listingInfo, listingId}) {
                 return;
             }
             if(Array.isArray(listingData.error)) {
-                console.log(listingData.error[0].errorMsg);
                 toast.error(listingData.error[0].errorMsg);
                 return;
             }
@@ -58,7 +55,6 @@ function EditAd({listingInfo, listingId}) {
         }
     });
 
-    console.log(formik.values.categoryId);
     return (
         <form onSubmit={formik.handleSubmit}>
             {formFields.map((field) => {

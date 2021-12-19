@@ -13,17 +13,18 @@ function Ad({ad, email}) {
     
     return (
         <div className={css["ad-card"]}>
+
             <Link to={`/listings/${ad.id}`}>
                 <div className={css["product-image-wrapper"]}>
                     <img className={css["product-image"]} src={`${backURL + ad.image}`} alt="" />
                 </div>
-                
+              
                 <div className={css["product-info"]}>
                     <h2 className={css["product-title"]}>{ad.title}</h2>
                     <p><Icon icon="fa-clock-o" /><TimeAgo datetime={ad.timestamp}/></p>
                     <p><Icon icon="fa-map-marker" />{ad.city ? ad.city : 'Unspecified'}</p>
                     <p><Icon icon="fa-tag" />{ad.category_name || 'Uncategorized'}</p>
-                    <p><Icon icon="fa-eye" />{ad.views} views</p>
+                    {/* <p><Icon icon="fa-eye" />{ad.views} views</p> */}
                 </div>
             </Link>
             <div className={css["product-footer"]}>
