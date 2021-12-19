@@ -39,7 +39,6 @@ function CreateAd() {
             formData.append('mainImage', values.mainImage);
             formData.append('categoryId', values.categoryId);
 
-            console.log(Object.fromEntries(formData));
 
             const listingData = await postMultiPartData('listings/new', formData, token);
             if(listingData.msg) {
@@ -47,7 +46,6 @@ function CreateAd() {
                 return;
             }
             if(Array.isArray(listingData.error)) {
-                console.log(listingData.error[0].errorMsg);
                 toast.error(listingData.error[0].errorMsg);
                 return;
             }

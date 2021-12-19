@@ -25,7 +25,6 @@ function Login() {
             password: Yup.string().min(6).required(),
         }),
         onSubmit: async (values) => {
-            console.log(values);
             const authData = await postData('auth/login', values);
             if(authData.msg) {
                 login(authData.data.token, authData.data.email, authData.msg)

@@ -30,7 +30,6 @@ function UserInfo({userInfo}) {
             phone: Yup.string().max(12).matches(/^(\+370|8)([0-9]{8})$/, 'Invalid phone number').nullable(),
         }),
         onSubmit: async (values) => {
-            console.log(values);
             const editData = await postData('user/edit/info', values, token);
             if(editData.msg) {
                 toast.success(editData.msg);

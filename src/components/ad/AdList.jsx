@@ -17,7 +17,6 @@ function AdList({ byToken, endpoint }) {
             tokenArg = token;
         }
         const listingsData = await getData(endpoint, tokenArg);
-        console.log(listingsData);
         if (listingsData.error === "Bad token") {
             toast.error("Session has expired. Please login again");
             logout();

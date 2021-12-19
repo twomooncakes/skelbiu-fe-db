@@ -40,11 +40,10 @@ function EditAd({listingInfo, listingId}) {
             formData.append('mainImage', values.mainImage);
             formData.append('categoryId', values.categoryId);
 
-            console.log(Object.fromEntries(formData));
-
             const listingData = await postMultiPartData(`listings/edit/${listingId}`, formData, token);
             if(listingData.msg) {
                 toast.success('listing edited succesfully!');
+
                 return;
             }
             if(Array.isArray(listingData.error)) {

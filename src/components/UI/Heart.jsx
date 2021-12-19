@@ -15,8 +15,8 @@ function Heart({listingId, likedBy}) {
             return;
         }
         let fetchEndpoint = favorited ? `listings/unfavorite/${listingId}` : `listings/favorite/${listingId}`
+
         const favoriteData = await postData(fetchEndpoint, {}, token);
-        console.log(favoriteData);
         if(favoriteData.msg === 'listing favorited') {
             setFavorited(true);
         } else setFavorited(false);

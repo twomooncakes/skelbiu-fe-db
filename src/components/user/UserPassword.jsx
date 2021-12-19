@@ -31,7 +31,6 @@ function UserPassword() {
             repeatNewPassword: Yup.string().oneOf([Yup.ref('newPassword')], 'Password fields must match').required(),
         }),
         onSubmit: async (values) => {
-            console.log(values);
             setEditPasswordToggle(false);
             const passwordData = await postData('user/edit/password', values, token);
             if(passwordData.msg) {

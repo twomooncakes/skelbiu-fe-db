@@ -45,7 +45,6 @@ function UserEmail({userInfo}) {
 
         }),
         onSubmit: async (values) => {
-            console.log(values);
             setEditEmailToggle(false);
             const editData = await postData('user/edit/email', values, token);
             if(editData.error) {

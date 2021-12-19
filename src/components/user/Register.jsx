@@ -35,14 +35,12 @@ function Register() {
             phone: Yup.string().max(12).matches(/^(\+370|8)([0-9]{8})$/, 'Invalid phone number'),
         }),
         onSubmit: async (values) => {
-            console.log(values);
             const authData = await postData('auth/register', values);
             if(authData.msg) {
                 toast.success(authData.msg);
                 history.push('/login');
                 return;
             }
-            console.log(authData.error);
             
             if(Array.isArray(authData.error)) {
                 setResponse(authData.error);

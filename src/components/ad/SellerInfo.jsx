@@ -4,7 +4,6 @@ import Button from "../UI/Button";
 
 function SellerInfo({sellerInfo}) {
     const { email, city, phone, title } = sellerInfo;
-    console.log(title);
     return (
         <section className={`${css["seller-info-wrapper"]} card`}>
             <h1 className={css.heading}>Seller's Information</h1>

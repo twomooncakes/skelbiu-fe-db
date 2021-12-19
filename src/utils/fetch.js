@@ -10,7 +10,6 @@ export async function getData(endpoint, token = false) {
     }
     const res = await fetch(backURL + `${endpoint}/`, options);
     const data = await res.json();
-    console.log(data);
     return data;
 }
 
@@ -24,7 +23,6 @@ export async function postData(endpoint, body, token) {
         body: JSON.stringify(body)
     });
     const data = await res.json();
-    console.log(data);
     return data;
 }
 
@@ -38,6 +36,5 @@ export async function postMultiPartData(endpoint, formData, token) {
         body: formData
     });
     const data = await res.json();
-    console.log(data);
     return data;
 }
