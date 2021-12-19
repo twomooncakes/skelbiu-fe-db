@@ -25,7 +25,9 @@ function Profile() {
             history.push('/login');
             return;
         }
-        setUserInfo(userData.data[0]);
+        if(userData.msg) {
+            setUserInfo(userData.data[0]);
+        }
     }
 
     useEffect(() => {

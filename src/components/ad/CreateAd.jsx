@@ -33,7 +33,6 @@ function CreateAd() {
         }),
         onSubmit: async (values) => {
             console.log(values);
-            // refactor later
             const formData = new FormData();
             formData.append('title', values.title);
             formData.append('description', values.description);

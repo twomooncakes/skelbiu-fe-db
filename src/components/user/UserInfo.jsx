@@ -32,6 +32,11 @@ function UserInfo({userInfo}) {
             console.log(values);
             setEditInfoToggle(false);
             const editData = await postData('user/edit/info', values, token);
+            if(editData.msg) {
+                toast.success(editData.msg);
+                return;
+            }
+            toast.error(editData.error);
         }
     });
 

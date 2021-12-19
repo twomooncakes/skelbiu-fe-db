@@ -1,12 +1,14 @@
 
 // CHANGE LATER
-import css from './Credentials.module.css';
+import css from './UserPassword.module.css';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import { useEditProfileCtx } from '../../store/EditProfileContext';
+import { postData } from '../../utils/fetch';
+import { useAuthCtx } from '../../store/AuthContext';
 
 const credFormFields = [
     { type: "password", name: "oldPassword", placeholder: "Old Password", label: "Old Password" },
@@ -15,6 +17,7 @@ const credFormFields = [
 ];
 
 function UserPassword() {
+    const { token } = useAuthCtx();
     const { setEditPasswordToggle } = useEditProfileCtx();
     const formik = useFormik({
         enableReinitialize: true,
@@ -31,11 +34,16 @@ function UserPassword() {
         onSubmit: async (values) => {
             console.log(values);
             setEditPasswordToggle(false);
-            // const editData = await postData('user/edit', values, token);
+            const passwordData = await postData('user/edit/password', values, token);
+            if(passwordData.msg) {
+                toast.success(passwordData.msg);
+                return;
+            }
+            toast.error(passwordData.error);
         }
     });
     return (
-        <form className={css["cred-form"]} onSubmit={formik.handleSubmit}>
+        <form className={css["user-password"]} onSubmit={formik.handleSubmit}>
             {credFormFields.map((field) => {
                 return (
                     <div className={css["labeled-input"]} key={field.name}>

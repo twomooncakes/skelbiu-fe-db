@@ -1,8 +1,6 @@
 import Profile from "../components/user/Profile";
 
 function MyAccountPage() {
-
-    
     return (
         <main>
             <h1>Account</h1>

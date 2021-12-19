@@ -1,0 +1,20 @@
+.account {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.account button {
+    margin-top: 1.5rem;
+    background-color: #dc3545;
+}
+
+.labeled-input {
+    width: 100%;
+}
+
+.user-email label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    display: block;
+}

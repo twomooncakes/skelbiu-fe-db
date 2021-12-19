@@ -4,10 +4,11 @@ import toast from 'react-hot-toast';
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 // CHANGE LATER
-import css from './Credentials.module.css';
+import css from './UserEmail.module.css';
 import { useEditProfileCtx } from "../../store/EditProfileContext";
 import { postData } from "../../utils/fetch";
 import { useAuthCtx } from "../../store/AuthContext";
+import { useHistory } from "react-router-dom";
 
 const credFormFields = [
     { type: "email", name: "email", placeholder: "Email", label: "Email" },
@@ -15,8 +16,22 @@ const credFormFields = [
 ];
 
 function UserEmail({userInfo}) {
-    const { token } = useAuthCtx();
+    const history = useHistory();
+    const { token, logout } = useAuthCtx();
     const { editEmailToggle, setEditEmailToggle } = useEditProfileCtx();
+
+    const handleDeleteUser = async () => {
+        console.log('delete user');
+        const deleteData = await postData('user/delete', {}, token);
+        if(deleteData.msg) {
+            logout();
+            toast.success(deleteData.msg);
+            history.push('/');
+            return;
+        }
+        toast.error('something went wrong');
+    }
+
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -44,7 +59,7 @@ function UserEmail({userInfo}) {
     return (
         <>
             {editEmailToggle ? 
-                <form className={css["cred-form"]} onSubmit={formik.handleSubmit}>
+                <form className={css["user-email"]} onSubmit={formik.handleSubmit}>
                     {credFormFields.map((field) => {
                         return (
                             <div className={css["labeled-input"]} key={field.name}>
@@ -56,8 +71,9 @@ function UserEmail({userInfo}) {
                     <Button type="submit" mainBtn={true}>Confirm changes</Button>
                 </form>
             :
-                <div>
+                <div className={css.account}>
                     <h2>{userInfo.email}</h2>
+                    <Button mainBtn={true} clickFunc={handleDeleteUser}>Delete Account</Button>
                 </div>
             } 
         </>

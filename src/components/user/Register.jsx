@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 import Input from "../UI/Input";
 import { postData } from "../../utils/fetch";
 import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const formFields = [
     { type: "email", name: "email", placeholder: "Email" },
@@ -15,6 +16,8 @@ const formFields = [
 ];
 
 function Register() {
+    const [response, setResponse] = useState([]);
+
     const history = useHistory();
     const formik = useFormik({
         initialValues: {
@@ -40,14 +43,22 @@ function Register() {
                 return;
             }
             console.log(authData.error);
+            
             if(Array.isArray(authData.error)) {
-                console.log(authData.error[0].errorMsg);
-                toast.error(authData.error[0].errorMsg);
+                setResponse(authData.error);
                 return;
             }
             toast.error(authData.error);
         }
     });
+
+    const formikErrors = formik.setErrors;
+    
+    useEffect(() => {
+        const errorObj = responseToErrors(response);
+        formikErrors(errorObj);
+    }, [response, formikErrors]);
+
     return (
         <form onSubmit={formik.handleSubmit}>
             {formFields.map((field) => {
@@ -61,3 +72,11 @@ function Register() {
 }
 
 export default Register;
+
+function responseToErrors(response) {
+    const arrayStructure = response.map((errObj) => ({
+      [errObj.field]: errObj.errorMsg,
+    }));
+  
+    return Object.assign({}, ...arrayStructure);
+  }

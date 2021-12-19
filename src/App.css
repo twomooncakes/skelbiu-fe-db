@@ -64,3 +64,11 @@ form {
     margin: 1rem 0;
     text-align: center;
 }
+
+.danger {
+    color: #dc3545;
+}
+
+.bg-danger {
+    background-color: #dc3545;
+}
