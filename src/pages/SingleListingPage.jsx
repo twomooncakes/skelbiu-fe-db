@@ -5,6 +5,7 @@ import SellerInfo from "../components/ad/SellerInfo";
 import SingleAd from "../components/ad/SingleAd";
 import { getData } from "../utils/fetch";
 import { useAuthCtx } from "../store/AuthContext";
+import toast from "react-hot-toast";
 
 function SingleListingPage() {
     const { token } = useAuthCtx();
@@ -17,8 +18,14 @@ function SingleListingPage() {
             tokenArg = token;
         }
         const listingsData = await getData(`listings/${listingId}`, tokenArg);
-        console.log(listingsData.data[0]);
-        setListingInfo(listingsData.data[0]);
+        if(listingsData.error) {
+            toast.error(listingsData.error)
+            return;
+        }
+        if(listingsData.msg) {
+            setListingInfo(listingsData.data[0]);
+        }
+        
     };
     
     useEffect(() => {
@@ -29,17 +36,19 @@ function SingleListingPage() {
     }, []);
 
     return (
-        <>
-            {Object.entries(listingInfo).length === 0 ? <p>fdgd</p> : 
-                <main>
-                    <h1>{listingInfo.title}</h1>
-                    <div className={css["single-listing-wrapper"]}>
-                        <SingleAd listingInfo={listingInfo} />
-                        <SellerInfo sellerInfo={listingInfo} />
-                    </div>
-                </main>
-            }
-        </>
+        <main>
+            <>
+                {Object.entries(listingInfo).length === 0 || listingInfo.error ? <p className="main-msg">Listing is unavailable</p> : 
+                    <>
+                        <h1>{listingInfo.title}</h1>
+                        <div className={css["single-listing-wrapper"]}>
+                            <SingleAd listingInfo={listingInfo} />
+                            <SellerInfo sellerInfo={listingInfo} />
+                        </div>
+                    </>
+                }
+            </>
+        </main>
     );
 }
 

@@ -2,12 +2,18 @@
     margin-bottom: 1.5rem;
 }
 
-.input {
+.input, .textarea {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    font-size: 0.8rem;
     border-radius: .25rem;
     width: 100%;
     padding: 1rem;
     color: #333;
     border: 1px solid #bbbbbb;
+}
+
+.textarea {
+    resize: vertical;
 }
 
 .file-input-wrapper {
@@ -24,6 +30,8 @@
 }
 
 .file-input {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    font-size: 0.8rem;
     background-color: white;
     border-radius: .25rem;
     color: #1e8da9;

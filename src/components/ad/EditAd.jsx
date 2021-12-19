@@ -8,9 +8,10 @@ import { postMultiPartData } from "../../utils/fetch";
 
 const formFields = [
     { type: "text", name: "title", placeholder: "Title" },
-    { type: "text", name: "description", placeholder: "Description" },
+    { type: "textarea", name: "description", placeholder: "Description" },
     { type: "number", name: "price", placeholder: "Price" },
-    { type: "file", name: "mainImage" }
+    { type: "file", name: "mainImage" },
+    { type: "select", name: "categoryId" },
 ];
 
 function EditAd({listingInfo, listingId}) {
@@ -23,6 +24,7 @@ function EditAd({listingInfo, listingId}) {
             description: listingInfo.description,
             price: listingInfo.price,
             mainImage: listingInfo.image,
+            categoryId: listingInfo.cat_id
         },
         validationSchema: Yup.object({
             title: Yup.string().max(25).required(),
@@ -38,27 +40,30 @@ function EditAd({listingInfo, listingId}) {
             formData.append('description', values.description);
             formData.append('price', values.price);
             formData.append('mainImage', values.mainImage);
+            formData.append('categoryId', values.categoryId);
 
             console.log(Object.fromEntries(formData));
 
             const listingData = await postMultiPartData(`listings/edit/${listingId}`, formData, token);
-            // if(listingData.msg) {
-            //     toast.success('add posted succesfully!');
-            //     return;
-            // }
-            // if(Array.isArray(listingData.error)) {
-            //     console.log(listingData.error[0].errorMsg);
-            //     toast.error(listingData.error[0].errorMsg);
-            //     return;
-            // }
-            // toast.error(listingData.error);
+            if(listingData.msg) {
+                toast.success('listing edited succesfully!');
+                return;
+            }
+            if(Array.isArray(listingData.error)) {
+                console.log(listingData.error[0].errorMsg);
+                toast.error(listingData.error[0].errorMsg);
+                return;
+            }
+            toast.error(listingData.error);
         }
     });
+
+    console.log(formik.values.categoryId);
     return (
         <form onSubmit={formik.handleSubmit}>
             {formFields.map((field) => {
                 return (
-                    <Input type={field.type} key={field.name} formik={formik} name={field.name} placeholder={field.placeholder} />
+                    <Input type={field.type} key={field.name} formik={formik} name={field.name} placeholder={field.placeholder} val={formik.initialValues[`${field.name}`]}/>
                 )
             })}
             <Button type="submit" mainBtn={true}>Confirm Changes</Button>

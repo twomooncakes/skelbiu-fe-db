@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EditAd from "../components/ad/EditAd";
+import Button from "../components/UI/Button";
 import { useAuthCtx } from "../store/AuthContext";
-import { getData } from "../utils/fetch";
+import { getData, postData } from "../utils/fetch";
 
 function EditListingPage() {
     const { token } = useAuthCtx();
@@ -14,6 +15,12 @@ function EditListingPage() {
         console.log(listingsData.data[0]);
         setListingInfo(listingsData.data[0]);
     };
+
+    const handleDelete = async () => {
+        console.log('delete ', listingId);
+        const deleteData = await postData(`listings/delete/${listingId}`, {}, token);
+        console.log(deleteData);
+    }
     
     useEffect(() => {
         getListingInfo();
@@ -23,10 +30,16 @@ function EditListingPage() {
     }, []);
 
     return (
+        <>
+        {listingInfo.length === 0 ? <p className="main-msg">Listing is no longer available.</p> :
         <main>
-            <h1>Edit</h1>
+            <div className="page-heading">
+                <h1>Edit</h1>
+                <Button clickFunc={handleDelete}>Delete Listing</Button>
+            </div>
             <EditAd listingInfo={listingInfo} listingId={listingId}/>
-        </main>
+        </main>}
+        </>
     );
 }
 

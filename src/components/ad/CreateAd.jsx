@@ -8,9 +8,10 @@ import { postMultiPartData } from "../../utils/fetch";
 
 const formFields = [
     { type: "text", name: "title", placeholder: "Title" },
-    { type: "text", name: "description", placeholder: "Description" },
+    { type: "textarea", name: "description", placeholder: "Description" },
     { type: "number", name: "price", placeholder: "Price" },
-    { type: "file", name: "mainImage" }
+    { type: "file", name: "mainImage" },
+    { type: "select", name: "categoryId" },
 ];
 
 function CreateAd() {
@@ -21,7 +22,8 @@ function CreateAd() {
             title: "",
             description: "",
             price: 0,
-            mainImage: ""
+            mainImage: "",
+            categoryId: ""
         },
         validationSchema: Yup.object({
             title: Yup.string().max(25).required(),
@@ -37,6 +39,7 @@ function CreateAd() {
             formData.append('description', values.description);
             formData.append('price', values.price);
             formData.append('mainImage', values.mainImage);
+            formData.append('categoryId', values.categoryId);
 
             console.log(Object.fromEntries(formData));
 
