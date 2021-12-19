@@ -4,12 +4,9 @@ import TimeAgo from 'timeago-react';
 import { backURL } from "../../utils/fetch";
 import Heart from "../UI/Heart";
 import { Link } from "react-router-dom";
+import EditPencil from "../UI/EditPencil";
 
 function Ad({ad, email}) {
-
-    const handleEdit = async () => {
-        console.log('edit');
-    }
 
     // free items distinct styling
     const isFree = parseInt(ad.price) === 0;
@@ -34,7 +31,7 @@ function Ad({ad, email}) {
                 <Link to={`/listings/${ad.id}`}>
                 <p className={`${css["product-price"]} ${isFree ? css["free-item"] : ''}`}>{isFree ? 'Free' : ad.price + ' €'}</p>
                 </Link>
-                {ad.seller === email ? <Icon icon='fa-pencil' onClick={handleEdit}/> : <Heart listingId={ad.id} likedBy={ad.likedBy} />}
+                {ad.seller === email ? <EditPencil listingId={ad.id} /> : <Heart listingId={ad.id} likedBy={ad.likedBy} />}
             </div>
         </div>
     );

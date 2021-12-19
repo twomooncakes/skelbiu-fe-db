@@ -1,12 +1,10 @@
 import TimeAgo from "timeago-react";
-import { useAuthCtx } from "../../store/AuthContext";
 import { backURL } from "../../utils/fetch";
 import Heart from "../UI/Heart";
 import Icon from "../UI/Icon";
 import css from "./SingleAd.module.css";
 
 function SingleAd({listingInfo}) {
-    const { email } = useAuthCtx();
     const { id, image, likedBy, timestamp, category_name, views, price, description } = listingInfo;
 
     // free items distinct styling
@@ -18,7 +16,6 @@ function SingleAd({listingInfo}) {
                 <div className={css["image-container"]}>
                     <img src={`${backURL + image}`} alt="" />
                     <div className={css.heart}>
-                        {/* needs likedBy prop */}
                         <Heart listingId={id} likedBy={likedBy || false} />
                     </div>
                 </div>

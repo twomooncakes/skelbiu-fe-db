@@ -10,6 +10,7 @@ function SingleListingPage() {
     const { token } = useAuthCtx();
     const [listingInfo, setListingInfo] = useState([]);
     const { listingId } = useParams();
+    
     const getListingInfo = async () => {
         let tokenArg = false;
         if (token) {

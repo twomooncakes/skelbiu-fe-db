@@ -13,6 +13,7 @@ import MyAccountPage from "./pages/MyAccount";
 import EditProfileProvider from "./store/EditProfileContext";
 import SingleListingPage from "./pages/SingleListingPage";
 import UserListingsPage from "./pages/UserListingsPage";
+import EditListingPage from "./pages/EditListingPage";
 
 function App() {
   const { isLoggedIn } = useAuthCtx();
@@ -39,6 +40,11 @@ function App() {
             <EditProfileProvider>
               <MyAccountPage />
             </EditProfileProvider>
+          </Route>
+        )}
+        {isLoggedIn && (
+          <Route path="/my-ads/edit/:listingId">
+            <EditListingPage />
           </Route>
         )}
         {isLoggedIn && (
