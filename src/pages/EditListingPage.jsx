@@ -34,7 +34,7 @@ function EditListingPage() {
         {listingInfo.length === 0 ? <p className="main-msg">Listing is no longer available.</p> :
         <main>
             <div className="page-heading">
-                <h1>Edit</h1>
+                <h1 className="page-title">Edit</h1>
                 <Button clickFunc={handleDelete}>Delete Listing</Button>
             </div>
             <EditAd listingInfo={listingInfo} listingId={listingId}/>

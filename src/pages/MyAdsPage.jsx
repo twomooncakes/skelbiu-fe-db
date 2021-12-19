@@ -5,7 +5,7 @@ function MyAdsPage() {
     const { token } = useAuthCtx();
     return (
         <main>
-            <h1>My Ads</h1>
+            <h1 className="page-title">My Ads</h1>
             <AdList byToken={token} endpoint='listings/user-listings'/>
         </main>
     );

@@ -53,7 +53,7 @@ function Register() {
     });
 
     const formikErrors = formik.setErrors;
-    
+
     useEffect(() => {
         const errorObj = responseToErrors(response);
         formikErrors(errorObj);
@@ -75,8 +75,8 @@ export default Register;
 
 function responseToErrors(response) {
     const arrayStructure = response.map((errObj) => ({
-      [errObj.field]: errObj.errorMsg,
+        [errObj.field]: errObj.errorMsg,
     }));
   
     return Object.assign({}, ...arrayStructure);
-  }
+}

@@ -10,18 +10,31 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.logo {
-    display: flex;
-}
-
-.logo img {
-    height: 50px;
-    /* margin-right: 0.5rem; */
+    height: 100%;
 }
 
 .controls {
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 800px) {
+    header {
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .header_wrapper {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .brand {
+        text-align: center;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid whitesmoke;
+    }
 }

@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 import Input from "../UI/Input";
 import { postData } from "../../utils/fetch";
 import { useAuthCtx } from '../../store/AuthContext';
+import { useEffect, useState } from "react";
 
 const formFields = [
     { type: "email", name: "email", placeholder: "Email" },
@@ -12,6 +13,7 @@ const formFields = [
 ];
 
 function Login() {
+    const [response, setResponse] = useState([]);
     const { login } = useAuthCtx();
     const formik = useFormik({
         initialValues: {
@@ -30,13 +32,20 @@ function Login() {
                 return;
             }
             if(Array.isArray(authData.error)) {
-                console.log(authData.error[0].errorMsg);
-                toast.error(authData.error[0].errorMsg);
+                setResponse(authData.error);
                 return;
             }
             toast.error(authData.error);
         }
     });
+
+    const formikErrors = formik.setErrors;
+    
+    useEffect(() => {
+        const errorObj = responseToErrors(response);
+        formikErrors(errorObj);
+    }, [response, formikErrors]);
+
     return (
         <form onSubmit={formik.handleSubmit}>
             {formFields.map((field) => {
@@ -47,6 +56,14 @@ function Login() {
             <Button type="submit" mainBtn={true}>Login</Button>
         </form>
     );
+}
+
+function responseToErrors(response) {
+    const arrayStructure = response.map((errObj) => ({
+        [errObj.field]: errObj.errorMsg,
+    }));
+  
+    return Object.assign({}, ...arrayStructure);
 }
 
 export default Login;

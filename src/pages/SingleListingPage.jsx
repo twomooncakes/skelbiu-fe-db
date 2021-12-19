@@ -40,7 +40,7 @@ function SingleListingPage() {
             <>
                 {Object.entries(listingInfo).length === 0 || listingInfo.error ? <p className="main-msg">Listing is unavailable</p> : 
                     <>
-                        <h1>{listingInfo.title}</h1>
+                        <h1 className="page-title">{listingInfo.title}</h1>
                         <div className={css["single-listing-wrapper"]}>
                             <SingleAd listingInfo={listingInfo} />
                             <SellerInfo sellerInfo={listingInfo} />

@@ -1,5 +1,5 @@
 import css from './Nav.module.css';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAuthCtx } from '../../store/AuthContext';
 import Button from '../UI/Button';
 import Icon from '../UI/Icon';
@@ -45,24 +45,13 @@ function MainNav() {
     const { isLoggedIn, logout } = useAuthCtx();
     let navArr = isLoggedIn ? authedNav : navData;
     return (
-        <>
-            <input
-                className={css.checkbox}
-                id='burger-check'
-                type='checkbox'
-                defaultChecked={true}
-            />
-            <label htmlFor='burger-check' className={css.burger}>
-                <Icon icon='fa-th' />
-            </label>
-            <nav className={css.main_nav + ' main-nav'}>
-                {navArr.map((link) => <NavLink key={link.id} exact to={link.to}>{link.name}</NavLink>)}
-                {isLoggedIn && <NavLink to='/' onClick={logout}>Logout</NavLink>}
-                {isLoggedIn && <NavLink to='/create-listing'>
-                    <Button mainBtn={true} ><Icon icon='fa-plus'/> New Ad</Button>
-                </NavLink>}
-            </nav>
-        </>
+        <nav className={css.main_nav + ' main-nav'}>
+            {navArr.map((link) => <NavLink key={link.id} exact to={link.to}>{link.name}</NavLink>)}
+            {isLoggedIn && <Link to='/' onClick={logout}>Logout</Link>}
+            {isLoggedIn && <NavLink to='/create-listing'>
+                <Button mainBtn={true} ><Icon icon='fa-plus'/> New Ad</Button>
+            </NavLink>}
+        </nav>
     );
 }
 

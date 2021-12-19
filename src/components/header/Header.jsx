@@ -1,3 +1,4 @@
+import Icon from '../UI/Icon';
 import css from './Header.module.css';
 import MainNav from './Nav';
 
@@ -5,10 +6,7 @@ function Header() {
     return (
         <header>
             <div className={css.header_wrapper}>
-                <div className={css.logo}>
-                    <img src="images/logo.png" alt=""/>
-                    <h1>DList</h1>
-                </div>
+                <h1 className={css.brand}>ListingHub</h1>
                 <div className={css.controls}>
                     <MainNav />
                 </div>

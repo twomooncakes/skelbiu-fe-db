@@ -6,7 +6,7 @@ function UserListingsPage() {
     
     return (
         <main>
-            <h1>User Listings</h1>
+            <h1 className="page-title">User Listings</h1>
             <AdList byToken={token} endpoint={token ? 'listings/all/authed' : 'listings/all'}/>
         </main>
     );
