@@ -70,4 +70,11 @@
     color: rgb(79, 195, 33);
 }
 
+.content-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
 

@@ -32,7 +32,6 @@ function CreateAd() {
             mainImage: Yup.string()
         }),
         onSubmit: async (values) => {
-            console.log(values);
             const formData = new FormData();
             formData.append('title', values.title);
             formData.append('description', values.description);
