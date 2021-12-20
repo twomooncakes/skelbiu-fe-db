@@ -32,7 +32,9 @@ function Heart({listingId, likedBy}) {
     }, [])
 
     return (
-        <Icon icon={favorited ? "fa-heart" : "fa-heart-o"} onClick={handleFavoriting}/>
+        <>
+            {isLoggedIn ? <Icon icon={favorited ? "fa-heart" : "fa-heart-o"} onClick={handleFavoriting}/> : <Icon icon="fa-heart-o" onClick={handleFavoriting}/>}
+        </>
     );
 }
 
