@@ -29,7 +29,7 @@ function Heart({listingId, likedBy}) {
         return () => {
             setFavorited(false);
         }
-    }, [])
+    }, [likedBy, email])
 
     return (
         <>
