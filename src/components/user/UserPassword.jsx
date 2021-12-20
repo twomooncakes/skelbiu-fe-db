@@ -8,6 +8,7 @@ import Input from "../UI/Input";
 import { useEditProfileCtx } from '../../store/EditProfileContext';
 import { postData } from '../../utils/fetch';
 import { useAuthCtx } from '../../store/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 const credFormFields = [
     { type: "password", name: "oldPassword", placeholder: "Old Password", label: "Old Password" },
@@ -16,8 +17,9 @@ const credFormFields = [
 ];
 
 function UserPassword() {
-    const { token } = useAuthCtx();
+    const { token, logout } = useAuthCtx();
     const { setEditPasswordToggle } = useEditProfileCtx();
+    const history = useHistory();
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -31,10 +33,12 @@ function UserPassword() {
             repeatNewPassword: Yup.string().oneOf([Yup.ref('newPassword')], 'Password fields must match').required(),
         }),
         onSubmit: async (values) => {
-            setEditPasswordToggle(false);
             const passwordData = await postData('user/edit/password', values, token);
             if(passwordData.msg) {
+                setEditPasswordToggle(false);
                 toast.success(passwordData.msg);
+                logout();
+                history.push('/');
                 return;
             }
             toast.error(passwordData.error);

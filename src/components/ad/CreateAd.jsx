@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 import Input from "../UI/Input";
 import { useAuthCtx } from '../../store/AuthContext';
 import { postMultiPartData } from "../../utils/fetch";
+import { useHistory } from "react-router-dom";
 
 const formFields = [
     { type: "text", name: "title", placeholder: "Title" },
@@ -16,7 +17,7 @@ const formFields = [
 
 function CreateAd() {
     const { token } = useAuthCtx();
-
+    const history = useHistory();
     const formik = useFormik({
         initialValues: {
             title: "",
@@ -43,6 +44,7 @@ function CreateAd() {
             const listingData = await postMultiPartData('listings/new', formData, token);
             if(listingData.msg) {
                 toast.success('add posted succesfully!');
+                history.push('/');
                 return;
             }
             if(Array.isArray(listingData.error)) {

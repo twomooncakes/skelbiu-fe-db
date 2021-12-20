@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 import Input from "../UI/Input";
 import { useAuthCtx } from '../../store/AuthContext';
 import { postMultiPartData } from "../../utils/fetch";
+import { useHistory } from "react-router-dom";
 
 const formFields = [
     { type: "text", name: "title", placeholder: "Title" },
@@ -16,6 +17,7 @@ const formFields = [
 
 function EditAd({listingInfo, listingId}) {
     const { token } = useAuthCtx();
+    const history = useHistory();
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -24,7 +26,7 @@ function EditAd({listingInfo, listingId}) {
             description: listingInfo.description,
             price: listingInfo.price,
             mainImage: listingInfo.image,
-            categoryId: listingInfo.cat_id
+            categoryId: listingInfo.cat_id !== null ? listingInfo.cat_id : 0
         },
         validationSchema: Yup.object({
             title: Yup.string().max(25).required(),
@@ -43,7 +45,7 @@ function EditAd({listingInfo, listingId}) {
             const listingData = await postMultiPartData(`listings/edit/${listingId}`, formData, token);
             if(listingData.msg) {
                 toast.success('listing edited succesfully!');
-
+                history.push(`/listings/${listingId}`);
                 return;
             }
             if(Array.isArray(listingData.error)) {

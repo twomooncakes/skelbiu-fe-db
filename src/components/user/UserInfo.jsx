@@ -15,7 +15,7 @@ const formFields = [
     { type: "text", name: "phone", placeholder: "Phone" }
 ];
 
-function UserInfo({userInfo}) {
+function UserInfo({userInfo, getNewData}) {
     const [response, setResponse] = useState([]);
     const { token } = useAuthCtx();
     const { editInfoToggle, setEditInfoToggle } = useEditProfileCtx();
@@ -34,6 +34,7 @@ function UserInfo({userInfo}) {
             if(editData.msg) {
                 toast.success(editData.msg);
                 setEditInfoToggle(false);
+                getNewData();
                 return;
             }
             if(Array.isArray(editData.error)) {

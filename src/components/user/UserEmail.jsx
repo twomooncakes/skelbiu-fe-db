@@ -45,12 +45,17 @@ function UserEmail({userInfo}) {
 
         }),
         onSubmit: async (values) => {
-            setEditEmailToggle(false);
             const editData = await postData('user/edit/email', values, token);
             if(editData.error) {
                 return toast.error(editData.error);
             }
-            toast.success(editData.msg); 
+            if(editData.msg) {
+                setEditEmailToggle(false);
+                toast.success(editData.msg);
+                logout();
+                history.push('/');
+            }
+            
         }
     });
     return (

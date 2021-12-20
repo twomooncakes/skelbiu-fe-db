@@ -19,7 +19,7 @@ function CategorySelect({formik}) {
 
     return (
         <select className={css["category-select"]} name="categoryId" id="categoryId" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.categoryId}>
-            <option value={null}>Choose Category</option>
+            <option value={0}>Choose Category</option>
             {categories.map(({id, category_name}) => {
                 return (
                     <option key={id} value={id}>{category_name}</option>

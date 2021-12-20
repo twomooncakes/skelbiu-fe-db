@@ -13,6 +13,7 @@ import { useEditProfileCtx } from "../../store/EditProfileContext";
 function Profile() {
     const history = useHistory();
     const { editInfoToggle, setEditInfoToggle, handleEmailToggle, handlePasswordToggle, editEmailToggle, editPasswordToggle } = useEditProfileCtx();
+
     const [userInfo, setUserInfo] = useState({});
 
     const { token, logout } = useAuthCtx();
@@ -51,7 +52,7 @@ function Profile() {
 
             <div className={css.forms}>
                 <Credentials userInfo={userInfo} />
-                <UserInfo userInfo={userInfo} />
+                <UserInfo userInfo={userInfo} getNewData={getUserData}/>
             </div>
         </section>
     );
