@@ -6,32 +6,29 @@ import toast from "react-hot-toast";
 import Ad from "./Ad";
 import css from "./AdList.module.css";
 
-function AdList({ byToken, endpoint }) {
+function AdList({ endpoint }) {
     const { token, email, logout } = useAuthCtx();
     const history = useHistory();
     const [listings, setListings] = useState([]);
 
-    const getListings = async () => {
-        let tokenArg = false;
-        if (byToken) {
-            tokenArg = token;
-        }
-        const listingsData = await getData(endpoint, tokenArg);
-        if (listingsData.error === "Bad token") {
-            toast.error("Session has expired. Please login again");
-            logout();
-            history.push("/login");
-            return;
-        }
-        setListings(listingsData.data);
-    };
-
     useEffect(() => {
+        const getListings = async () => {
+            const listingsData = await getData(endpoint, token ? token : false);
+            if (listingsData.error === "Bad token") {
+                toast.error("Session has expired. Please login again");
+                logout();
+                history.push("/login");
+                return;
+            }
+            setListings(listingsData.data);
+        };
+        
         getListings();
+
         return () => {
             setListings([]);
         };
-    }, []);
+    }, [endpoint, history, logout, token]);
 
     return (
         <>

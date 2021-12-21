@@ -12,11 +12,6 @@ function EditListingPage() {
     const { listingId } = useParams();
     const history = useHistory();
 
-    const getListingInfo = async () => {
-        const listingsData = await getData(`listings/${listingId}`, token);
-        setListingInfo(listingsData.data[0]);
-    };
-
     const handleDelete = async () => {
         const deleteData = await postData(`listings/delete/${listingId}`, {}, token);
         if(deleteData.msg) {
@@ -27,11 +22,17 @@ function EditListingPage() {
     }
     
     useEffect(() => {
+        const getListingInfo = async () => {
+            const listingsData = await getData(`listings/${listingId}`, token);
+            setListingInfo(listingsData.data[0]);
+        };
+
         getListingInfo();
+
         return () => {
             setListingInfo([]);
         };
-    }, []);
+    }, [listingId, token]);
 
     return (
         <>

@@ -12,28 +12,27 @@ function SingleListingPage() {
     const [listingInfo, setListingInfo] = useState([]);
     const { listingId } = useParams();
     
-    const getListingInfo = async () => {
-        let tokenArg = false;
-        if (token) {
-            tokenArg = token;
-        }
-        const listingsData = await getData(`listings/${listingId}`, tokenArg);
-        if(listingsData.error) {
-            toast.error(listingsData.error)
-            return;
-        }
-        if(listingsData.msg) {
-            setListingInfo(listingsData.data[0]);
-        }
-        
-    };
+
     
     useEffect(() => {
+        const getListingInfo = async () => {
+            const listingsData = await getData(`listings/${listingId}`, token ? token : false);
+            if(listingsData.error) {
+                toast.error(listingsData.error)
+                return;
+            }
+            if(listingsData.msg) {
+                setListingInfo(listingsData.data[0]);
+            }
+            
+        };
+
         getListingInfo();
+
         return () => {
             setListingInfo([]);
         };
-    }, []);
+    }, [listingId, token]);
 
     return (
         <main>
