@@ -5,7 +5,7 @@ BACK END can be found [here](https://github.com/twomooncakes/skelbiu-api-db)
 
 ## ABOUT PROJECT
 
-ListingHub is a functional mock website for selling things. Registered users are able to add, edit and delete their listings, edit their account information, delete their account permanently favorite/unfavorite other sellers' listings. Non-registered users are still able to view listings and see detailed information about the item being sold and seller's contact details.
+ListingHub is a functional mock website for selling things. Registered users are able to add, edit and delete their listings, edit their account information, delete their account permanently and favorite/unfavorite other sellers' listings. Non-registered users are still able to view listings and see detailed information about the item being sold and seller's contact details.
 
 ## STARTING UP PROJECT
 
